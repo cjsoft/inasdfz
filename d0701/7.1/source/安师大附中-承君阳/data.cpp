@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+#define N 30010
+using namespace std;
+int T,n,K,m,a[N],o,l,r,X,b[N],t[5],P=998244353,i,ans,S;
+main()
+{
+	freopen("data.in","r",stdin);
+	freopen("data.out","w",stdout);
+	cin>>T;
+	b[0]=1;
+	for(i=1;i<N;i++)
+		b[i]=b[i-1]*2%P;
+	while(T--)
+	{
+		cin>>n>>K>>m;
+		for(i=1;i<=n;i++)
+			scanf("%d",a+i);
+		while(m--)
+		{
+			scanf("%d%d%d",&o,&l,&r);
+			if(o!=3)
+				scanf("%d",&X);
+			if(o==1)
+				for(i=l;i<=r;i++)a[i]=(a[i]+X)%K;
+			if(o==2)
+				for(i=l;i<=r;i++)a[i]=(a[i]*X)%K;
+			if(o==3)
+			{
+				ans=0;
+				memset(t,0,sizeof(t));
+				S=0;
+				for(i=r;i>=l;i--)
+				{
+					X=(S+1)%P;
+					S=(S+X)%P;
+					S=(S+P-t[a[i]])%P;
+					t[a[i]]=X;
+				}
+				for(i=0;i<K;i++)
+					ans=(ans+t[i])%P;
+				printf("%d\n",ans);
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+data.exe < data1.in > data1.out
+data.exe < data2.in > data2.out
+data.exe < data3.in > data3.out
+data.exe < data4.in > data4.out
+data.exe < data5.in > data5.out
+data.exe < data6.in > data6.out
+data.exe < data7.in > data7.out
+data.exe < data8.in > data8.out
+data.exe < data9.in > data9.out
+data.exe < data10.in > data10.out

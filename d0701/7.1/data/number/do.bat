@@ -1,0 +1,10 @@
+number.exe < number1.in > number1.out
+number.exe < number2.in > number2.out
+number.exe < number3.in > number3.out
+number.exe < number4.in > number4.out
+number.exe < number5.in > number5.out
+number.exe < number6.in > number6.out
+number.exe < number7.in > number7.out
+number.exe < number8.in > number8.out
+number.exe < number9.in > number9.out
+number.exe < number10.in > number10.out
