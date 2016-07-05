@@ -8,6 +8,8 @@ inline int getint();
 int A[MXN];
 void gen(int, ll, ll, ll, ll);
 int main() {
+    // freopen("aria.in", "r", stdin);
+    // freopen("aria.out", "w", stdout);
     int n, S, B, C, D;
     n = getint(); S = getint(); B = getint(); C = getint(); D = getint();
     gen(n, S, B, C, D);

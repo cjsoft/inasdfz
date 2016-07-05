@@ -34,6 +34,7 @@ int main() {
     }
     // gresu = qpow(s, n);
     gresu = gresu * qpow(fac(n), MOD - 2) % MOD;
+    if (gresu < 0) gresu += MOD;
     cout << gresu << endl;
     return 0;
 }
@@ -50,9 +51,9 @@ void dosomething() {
     // assert(sum == sss);
     // assert(sum <= sss);
     if (cnt & 1) {
-        gresu -= qpow(s - sss, n);
+        gresu = (gresu - qpow(s - sss, n)) % MOD;
     } else {
-        gresu += qpow(s - sss, n);
+        gresu = (gresu + qpow(s - sss, n)) % MOD;
     }
 }
 void dfs(int pos) {
