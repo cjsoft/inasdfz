@@ -1,0 +1,110 @@
+\documentclass{article}
+\usepackage{CJK}
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage{fancyhdr}
+%\usepackage[colorlinks, citecolor=red]{hyperref}
+\begin{CJK*}{GBK}{fs}
+\title{无名模拟赛}
+\author{无名}
+\begin{document}
+\pagenumbering{Roman}
+\linespread{1}
+\maketitle
+
+%\begin{large}
+
+\section{啊}
+\subsection{题目大意}
+\par $n$个点的树，叶子有两种颜色，红色或蓝色（也可能未确定），小红和小蓝进行游戏，每个人选一个叶子染上自己的颜色，一个非叶节点的颜色是所有儿子颜色中出现较多的那个，根的颜色是谁谁就获胜。小红先手，问小红是否能赢，如果能赢第一步可以选择哪些叶子。
+\subsection{算法一}
+
+每个节点都有三种可能：红必胜，蓝必胜，先手胜。
+
+转移也很简单，大家肯定都是依次走先手胜的儿子。
+
+考虑第二问，枚举小红第一步的叶子，再次dp，看根是否是红必胜。
+
+时间复杂度：$O(Tn^2)$，可以通过60分。判断胜利复杂度$O(Tn)$，可以得到80分。
+
+\subsection{算法二}
+
+我们设$redWin(i)$表示$i$子树里可以第一步走哪些使得红胜，$firstWin(i)$表示$i$是一个蓝必胜子树，但红可以走哪些使得$i$变成先手胜，这样就可以逼着蓝在$i$内再走一步。
+
+考虑$redWin$怎么求。
+
+如果$i$是一个红必胜子树，$redWin(i)$肯定就是所有可行的叶子。
+
+如果$i$是一个先手胜子树，$redWin(i)$肯定包括所有蓝必胜儿子的$firstWin$和先手胜儿子的$redWin$。
+
+考虑$firstWin$怎么求。
+
+必须满足红必胜儿子数量是蓝必胜儿子数量-1，先手胜儿子数量是个偶数。
+
+同样加入所有蓝必胜儿子的$firstWin$和先手胜儿子的$redWin$就好了。
+
+时间复杂度：$O(Tn)$，可以通过100分。
+
+
+\pagebreak
+\section{dark}
+\subsection{题目大意}
+\par $n$个点的无向图，每条边都可能存在，一个图的权值是连通块个数的$m$次方，求所有可能的图的权值和。
+\subsection{40\%算法}
+
+设$g_i$表示$i$个点的连通图有多少个，$f_{i,j}$表示$i$个点$j$个连通块的图有多少个。我们可以通过枚举1号点所在连通块大小得到转移式$$f_{i,j}=\sum_{k=1}^{i}f_{i-k,j-1}g_k\binom{i-1}{k-1}$$
+
+考虑如何求$g_i$，设$h_i$表示$i$个点的图有多少个，显然$$h_i=2^{\frac{i(i-1)}{2}}$$
+那么就可以通过经典的容斥——枚举1号点所在连通块大小得到转移式$$g_i=h_i-\sum_{j=1}^{i-1}g_jh_{i-j}\binom{i-1}{j-1}$$
+
+直接按照上述式子dp然后统计答案，时间复杂度$O(n^3)$。
+
+\subsection{60\%算法}
+
+可以直接设$f_{i,j}$表示$i$个点的图，权值是连通块个数的$m$次方的权值和，同样枚举1号点所在的连通块大小来转移，注意到$(n+1)^m=\sum_{i=0}^{m}\binom{m}{i}n^i$，于是可以得到转移式$$f_{i,j}=\sum_{k=1}^{i}g_k\binom{i-1}{k-1}\sum_{t=0}^{j}\binom{j}{t}f_{i-k,t}$$
+
+注意到$\sum_{t=0}^{j}\binom{j}{t}f_{i-k,t}$和$i$没有直接联系，可以预处理一下所以不需要枚举$t$，时间复杂度$O(n^2 m)$。
+
+\subsection{100\%算法}
+
+考虑第二类斯特林数$\begin{Bmatrix}n\\m\end{Bmatrix}$的意义，是将$n$个不同的元素拆分成$m$个集合的方案数，而$n^m$是在$n$个元素中选择$m$次的方案数，我们可以枚举选了几个不同的元素$k$，那么就要将这$m$次拆成$k$个集合，所以有$$n^m=\sum_{k=0}^{m}\begin{Bmatrix}m\\k\end{Bmatrix}\binom{n}{k}k!$$
+
+利用这个式子，我们可以将原题中的连通块数$^m$转化为$\binom{\text{连通块数}}{m}$。
+
+那么就可以设$F_{i,j}$表示$i$个点的图，权值是$\binom{\text{连通块数}}{m}$的权值和，同样枚举1号点所在的连通块大小来转移，注意到$\binom{n+1}{m}=\binom{n}{m}+\binom{n}{m-1}$，于是可以得到转移式$$F_{i,j}=\sum_{k=1}^{i}g_k\binom{i-1}{k-1}(F_{i-k,j}+F_{i-k,j-1})$$
+
+那么就有$$f_{n,m}=\sum_{k=0}^{m}\begin{Bmatrix}m\\k\end{Bmatrix}F_{n,k}k!$$而$$\begin{Bmatrix}m+1\\k\end{Bmatrix}=k\begin{Bmatrix}m\\k\end{Bmatrix}+\begin{Bmatrix}m\\k-1\end{Bmatrix}$$
+所以可以预处理第二类斯特林数，每个询问$O(m)$计算答案，那么现在问题就在于如何高效求出$F$。
+
+注意到$m$很小，而且$f_{i,j}$只和$j$与$j-1$层有关，于是可以分层做。
+
+我们稍微化简一下$F$的转移式，得到$$\frac{F_{i,j}}{(i-1)!}=\sum_{k=1}^{i}\frac{g_k}{(k-1)!}\frac{F_{i-k,j}+F_{i-k,j-1}}{(i-k)!}$$于是可以分治FFT计算，我们用$Solve(l,r)$求出$l$到$r$的函数值，那么只需要先$Solve(l,\frac{l+r}{2})$，然后再用FFT算出这一部分对后一部分的贡献，再$Solve(\frac{l+r}{2}+1,r)$就好了。
+
+而$g$也可以用类似的办法分治FFT求出。
+
+时间复杂度：$O(mn\log^2 n)$
+
+\pagebreak
+\section{fantasy}
+\subsection{题目大意}
+\par 一个字符串，尾部插入或删除字符，询问一个区间出现了多少次给定字符串。
+\subsection{100\%算法}
+
+我们将串倒过来，那么就是在前端加入删除字符，很容易想到后缀平衡树，而询问一个区间就是询问两次前缀，对于后缀平衡树上的一个节点我们用一个vector存下子树中所有后缀的位置，询问的时候二分一下就好了。这个vector也很好维护，注意到后缀平衡树是重量平衡树，在重构标号的同时用归并重构vector就行了。
+
+时间复杂度：插入是$O(\log^2 n)$的，询问是$O(|S|\log n+\log^2 n)$的，总复杂度$O(q\log^2 n+len\log n)$
+
+考虑分别优化每一部分的复杂度，重量平衡树我们选择treap，重构vector的时候就只要重构旋转的那一条链就可以了，插入就可以降到$O(\log n)$。
+
+我们可以在后缀平衡树上记录一些Lcp信息来使得每一层不需要暴力比较大小，因为实现比较复杂而难以描述，但较为容易思考这里略去具体方法，可以降到$O(|S|)$。
+
+而二分也可以去掉，我们可以记录上一层的vector里的每一个元素对应子树的哪一个元素，这样就可以通过根的位置一层一层定位，就不需要二分了，可以降到$O(\log n)$。
+
+时间复杂度：$O(q\log n+len)$，因为常数较大并不能跑出很好的效率。
+
+%\end{large}
+
+\end{CJK*}
+\end{document}
