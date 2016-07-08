@@ -1,0 +1,80 @@
+43 44 45 48 50 55 65 75 90
+Sample Answer: 
+43
+B 2 1
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+E
+R 2 1 2 2
+R 2 2 2 3
+B 2 3
+E
+E
+E
+E
+E
+X 2 1
+X 3 1
+R 2 2 3 2
+B 3 2
+E
+E
+E
+E
+E
+E
+E
+E
+E
+R 2 2 1 2
+B 1 2
+E
+E
+R 2 3 2 4
+R 2 4 1 4
+B 1 4
+E
+E
+E
+E
+X 2 1
+X 4 1
+X 4 3
+R 2 4 3 4
+B 3 4
+E
+E
+E
+E
+R 2 1 2 0
+R 2 0 1 0
+B 1 0
+E
+E
+X 4 1
+X 4 2
+X 4 2
+R 2 0 3 0
+B 3 0
+E
+E
+X 4 2
+R 1 2 0 2
+R 0 2 0 1
+B 0 1
+E
+E
+X 3 1
+R 0 2 0 3
+B 0 3
+E

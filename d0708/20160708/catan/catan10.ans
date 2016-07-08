@@ -1,0 +1,82 @@
+49 50 52 54 56 58 60 65 80
+Sample Answer: 
+49
+B 1 1
+E
+E
+R 1 1 1 0
+E
+E
+E
+E
+E
+R 1 0 0 0
+E
+E
+E
+B 0 0
+E
+E
+R 1 0 2 0
+E
+E
+B 2 0
+E
+E
+E
+E
+E
+E
+E
+E
+E
+X 2 4
+X 3 4
+U 1 1
+E
+R 1 1 2 1
+R 2 1 2 2
+E
+E
+E
+E
+E
+E
+E
+X 3 1
+R 2 2 1 2
+R 1 2 0 2
+B 0 2
+B 2 2
+E
+E
+E
+E
+E
+X 1 4
+X 2 4
+U 2 0
+E
+E
+E
+E
+E
+E
+X 1 4
+X 2 4
+U 2 2
+E
+E
+U 0 2
+E
+E
+E
+E
+E
+X 2 3
+X 2 3
+X 2 3
+X 4 3
+X 4 3
+U 0 0
+E

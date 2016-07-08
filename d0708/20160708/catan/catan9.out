@@ -1,0 +1,53 @@
+34
+B 7 5
+E
+E
+E
+E
+E
+E
+E
+R 7 5 8 5
+R 8 5 8 6
+B 8 6
+E
+E
+E
+E
+E
+E
+U 7 5
+E
+E
+E
+E
+E
+E
+E
+U 8 6
+E
+E
+E
+E
+R 8 5 9 5
+B 9 5
+E
+E
+E
+U 9 5
+E
+E
+E
+R 7 5 6 5
+R 6 5 6 4
+B 6 4
+E
+E
+U 6 4
+E
+R 6 5 6 6
+B 6 6
+E
+R 8 5 8 4
+B 8 4
+E
