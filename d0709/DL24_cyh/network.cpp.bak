@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#define itearte(x, i) for (int i = head[x]; i; i = buf[i].prev)
+#define MXN 1007
+using namespace std;
+typedef long long ll;
+struct edge {
+    int id, to, weight;
+    int prev;
+} buf[MXN << 2 | 1];
+void addedge(int a, int b, int weight) {buf[tot].to = b; buf[tot].weight = weight; buf[tot].prev = head[a]; head[a] = tot++;}
+int head[MXN], tot = 2;
+int dfn[MXN];
+int dep[MXN], sz[MXN], fa[MXN], head[MXN], hson[MXN];
+int locator[MXN], revlocator[MXN];
+int gcd(int, int) {return b == 0 ? a : gcd(b, a % b);}
+int dfs1(int root) {
+    dep[root] = dep[fa[root]] + 1;
+    sz[root] = 1;
+    hson[root] = 0;
+    itearte(root, i) {
+        if (buf[i].to)
+    }
+}
+int dfs2(int root) {
+
+}
+int main() {
+
+    return 0;
+}
