@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#define N 2
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const ull MOD[] = {998244353, 1000000007};
+ull num[7], inv[7];
+ull qpow(ull x, int y, ull MOD) {
+    ull rtn = 1;
+    for (; y; y >>= 1) {
+        if (y & 1) rtn = rtn * x % MOD;
+        x = x * x % MOD;
+    }
+    return rtn;
+}
+inline bool check() {
+    for (int i = 0; i < N; ++i) if (num[i] != 1) return false;
+    return true;
+}
+void getbinary() {
+    char ch;
+    while ((ch = getchar()) != '0' && ch != '1'); 
+    for (int i = 0; i < N; ++i) num[i] = ch - '0';
+    while ((ch = getchar()) == '0' || ch == '1') {
+        for (int i = 0; i < N; ++i) {
+            num[i] = num[i] << 1 | (ch - '0');
+            num[i] %= MOD[i];
+        }
+    }
+}
+int main() {
+    memset(num, 0, sizeof(num));
+    for (int i = 0; i < N; ++i) inv[i] = qpow(2, MOD[i] - 2, MOD[i]);
+    getbinary();
+    // while (!check()) {
+    //     // for ()
+    // }
+    return 0;
+}

@@ -1,0 +1,10 @@
+1:   10pts
+2:   1 pts
+3:   10pts
+4:   1 pts
+5:   5 pts
+6:   1 pts
+7:   0 pts
+8:   7 pts
+9:   10pts
+10:  10pts
